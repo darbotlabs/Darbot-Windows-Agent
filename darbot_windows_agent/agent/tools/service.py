@@ -1,4 +1,4 @@
-from darbot_windows_agent.agent.tools.views import Click, Type, Launch, Scroll, Drag, Move, Shortcut, Key, Wait, Scrape,Done, Clipboard, Shell, Switch, Resize
+from darbot_windows_agent.agent.tools.views import Click, Type, Launch, Scroll, Drag, Move, Shortcut, Key, Wait, Scrape,Done, Clipboard, Shell, Switch, Resize, GitHubCLI
 from darbot_windows_agent.desktop import Desktop
 from humancursor import SystemCursor
 from markdownify import markdownify
@@ -8,6 +8,7 @@ import uiautomation as uia
 import pyperclip as pc
 import pyautogui as pg
 import requests
+import subprocess
 
 cursor=SystemCursor()
 pg.FAILSAFE=False
@@ -176,3 +177,47 @@ def scrape_tool(url:str,desktop:Desktop=None)->str:
     html=response.text
     content=markdownify(html=html)
     return f'Scraped the contents of the entire webpage:\n{content}'
+
+@tool('GitHub CLI Tool', args_schema=GitHubCLI)
+def github_cli_tool(command: str, flags: str = "", desktop: Desktop = None) -> str:
+    """Execute GitHub CLI commands for repository management, issue tracking, PR management, etc.
+    
+    Examples:
+    - "auth status" - Check authentication status
+    - "repo list" - List repositories
+    - "pr list" - List pull requests
+    - "issue list" - List issues
+    - "repo view" - View repository details
+    """
+    
+    # Check if GitHub CLI is installed
+    try:
+        subprocess.run(["gh", "--version"], capture_output=True, timeout=10)
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        return "GitHub CLI is not installed. Please install it from https://cli.github.com/"
+    
+    # Build the full command
+    full_command = ["gh"] + command.split()
+    if flags:
+        full_command.extend(flags.split())
+    
+    try:
+        result = subprocess.run(
+            full_command,
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        
+        if result.returncode == 0:
+            return f"Command executed successfully:\n{result.stdout}"
+        else:
+            error_msg = result.stderr or "Unknown error occurred"
+            if "not authenticated" in error_msg.lower():
+                return f"Authentication required. Please run GitHub CLI authentication first.\nError: {error_msg}"
+            return f"Command failed with exit code {result.returncode}:\n{error_msg}"
+            
+    except subprocess.TimeoutExpired:
+        return f"Command timed out: gh {command} {flags}"
+    except Exception as e:
+        return f"Error executing GitHub CLI command: {str(e)}"
