@@ -1,6 +1,6 @@
 [project]
 name = "darbot-windows-agent"
-version = "0.5.0"
+version = "0.6.0"
 description = "A Darbot Computer Use Agent that interacts with Windows OS at GUI level."
 authors = [
     { name = "Darbot Labs", email = "darbot@timelarp.com" }

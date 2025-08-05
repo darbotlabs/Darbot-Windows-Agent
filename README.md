@@ -160,13 +160,53 @@ pip install langchain langchain-google-genai pyautogui uiautomation
 
 For more detailed troubleshooting, please check the [Issues page](https://github.com/darbotlabs/darbot-windows-agent/issues).
 
+## 📚 Additional Documentation
+
+For more detailed information, see our comprehensive documentation:
+
+- **[📃 Installation Guide](INSTALLATION.md)** - Complete setup instructions for all installation methods
+- **[👥 Development Guide](DEVELOPMENT.md)** - Contributing, development setup, and project architecture
+- **[🚨 Troubleshooting Guide](TROUBLESHOOTING.md)** - Comprehensive troubleshooting for common issues
+- **[🤝 Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to the project
+
+## ❓ Frequently Asked Questions
+
+### Q: What LLM providers are supported?
+A: The agent supports multiple LLM providers through LangChain:
+- **Google Gemini** (recommended)
+- **OpenAI GPT** models
+- **Groq** models  
+- **Ollama** (local models)
+- **Anthropic Claude** (via LangChain)
+
+### Q: Does this work on older Windows versions?
+A: The agent is optimized for Windows 10 and 11. Windows 7-8 may have limited compatibility due to UI Automation API differences.
+
+### Q: Can I use this for commercial purposes?
+A: Yes! The project is MIT licensed, allowing commercial use, modification, and distribution.
+
+### Q: How secure is the agent?
+A: The agent runs locally on your machine and only communicates with the LLM API you configure. No data is sent to third parties without your explicit configuration.
+
+### Q: Can I add custom automation tools?
+A: Absolutely! The agent is designed to be extensible. See the [Development Guide](DEVELOPMENT.md) for instructions on adding custom tools.
+
 ## Vision
 
 Talk to your computer. Watch it get things done.
 
 ## ⚠️ Caution
 
-Agent interacts directly with your Windows OS at GUI layer to perform actions. While the agent is designed to act intelligently and safely, it can make mistakes that might bring undesired system behaviour or cause unintended changes. Try to run the agent in a sandbox envirnoment.
+**This software enables automated control of your Windows desktop.** By using this software, you accept full responsibility for any actions performed by AI agents or automated systems built with this tool.
+
+• Agent interacts directly with your Windows OS at GUI layer to perform actions  
+• While the agent is designed to act intelligently and safely, it can make mistakes  
+• Mistakes might cause undesired system behavior or unintended changes  
+• **Recommendation**: Try to run the agent in a sandbox environment first  
+• **Administrator privileges** may be required for some automation tasks  
+• **English Windows locale** is recommended for optimal compatibility
+
+Use at your own risk and ensure you understand the implications of automated desktop control.
 
 ## 🪪 License
 
