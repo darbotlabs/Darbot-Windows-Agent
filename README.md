@@ -37,6 +37,9 @@
 • **Fast** – Typical end-to-end latency 1.5 – 2.3 seconds per action  
 • **Extensible** – Add your own Python tools and automation workflows  
 • **LangChain Compatible** – Integrates seamlessly with LangChain agents and workflows  
+• **GitHub CLI Integration** – Execute GitHub CLI commands directly through the agent  
+• **Model Selection** – VSCode GitHub Copilot-style model selection interface  
+• **Multi-Provider Support** – GitHub Copilot, OpenAI, Google, Groq, and Ollama models  
 • **MIT Licensed** – Fork, embed, or commercialize freely
 
 ## 🖥️ Supported Platforms
@@ -70,6 +73,20 @@ pip install darbot-windows-agent
 
 ## ⚙️Basic Usage
 
+### Enhanced Usage with Model Selection
+
+```python
+# main_enhanced.py - New GitHub Copilot integration
+python main_enhanced.py
+```
+
+This provides an interactive model selection menu similar to VSCode GitHub Copilot, supporting:
+- **GitHub Copilot models** (with GitHub CLI authentication)
+- **OpenAI, Google, Groq, Ollama** providers
+- **GitHub CLI commands** integration
+
+### Classic Usage
+
 ```python
 # main.py
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -86,6 +103,19 @@ print(agent_result.content)
 ```
 
 ## 🤖 Run Agent
+
+### Enhanced Agent with GitHub Integration
+
+```bash
+python main_enhanced.py
+```
+
+Features interactive model selection and GitHub CLI integration:
+- Choose from GitHub Copilot, OpenAI, Google, Groq, or Ollama models
+- Execute GitHub CLI commands: `gh auth status`, `gh repo list`, etc.
+- Special commands: `models`, `github`, `quit`
+
+### Classic Agent
 
 You can use the following to run from a script:
 
@@ -165,6 +195,7 @@ For more detailed troubleshooting, please check the [Issues page](https://github
 For more detailed information, see our comprehensive documentation:
 
 - **[📃 Installation Guide](INSTALLATION.md)** - Complete setup instructions for all installation methods
+- **[🔗 GitHub Integration Guide](GITHUB_INTEGRATION.md)** - GitHub CLI and model selection features
 - **[👥 Development Guide](DEVELOPMENT.md)** - Contributing, development setup, and project architecture
 - **[🚨 Troubleshooting Guide](TROUBLESHOOTING.md)** - Comprehensive troubleshooting for common issues
 - **[🤝 Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to the project
@@ -173,11 +204,18 @@ For more detailed information, see our comprehensive documentation:
 
 ### Q: What LLM providers are supported?
 A: The agent supports multiple LLM providers through LangChain:
-- **Google Gemini** (recommended)
-- **OpenAI GPT** models
-- **Groq** models  
+- **GitHub Copilot** (GPT-4, GPT-4 Turbo, GPT-3.5 Turbo via GitHub authentication)
+- **Google Gemini** (2.0 Flash, 1.5 Pro - recommended)
+- **OpenAI GPT** models (direct API access)
+- **Groq** models (Llama 3.1 70B, Mixtral)  
 - **Ollama** (local models)
 - **Anthropic Claude** (via LangChain)
+
+### Q: How do I use GitHub Copilot models?
+A: Install GitHub CLI, authenticate with `gh auth login`, then use `main_enhanced.py` to select GitHub Copilot models. No additional API keys needed.
+
+### Q: What GitHub CLI commands are supported?
+A: All GitHub CLI commands work through the agent: `gh auth status`, `gh repo list`, `gh pr list`, `gh issue list`, etc. The agent will guide you through authentication if needed.
 
 ### Q: Does this work on older Windows versions?
 A: The agent is optimized for Windows 10 and 11. Windows 7-8 may have limited compatibility due to UI Automation API differences.

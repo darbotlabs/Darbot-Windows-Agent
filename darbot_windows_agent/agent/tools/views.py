@@ -62,3 +62,8 @@ class Wait(SharedBaseModel):
 
 class Scrape(SharedBaseModel):
     url:str=Field(...,description="The url of the webpage to scrape.",examples=['https://google.com'])
+
+class GitHubCLI(SharedBaseModel):
+    """GitHub CLI command execution"""
+    command: str = Field(..., description="The GitHub CLI command to execute (without 'gh' prefix)", examples=["auth status", "repo list", "pr list"])
+    flags: str = Field("", description="Additional flags for the command", examples=["--json", "--limit 10"])

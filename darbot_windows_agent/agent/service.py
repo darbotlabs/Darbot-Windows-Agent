@@ -1,4 +1,5 @@
-from darbot_windows_agent.agent.tools.service import click_tool, type_tool, launch_tool, shell_tool, clipboard_tool, done_tool, shortcut_tool, scroll_tool, drag_tool, move_tool, key_tool, wait_tool, scrape_tool, switch_tool, resize_tool
+from darbot_windows_agent.agent.tools.service import click_tool, type_tool, launch_tool, shell_tool, clipboard_tool, done_tool, shortcut_tool, scroll_tool, drag_tool, move_tool, key_tool, wait_tool, scrape_tool, switch_tool, resize_tool, github_cli_tool
+from darbot_windows_agent.github.models import ModelSelector
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from darbot_windows_agent.agent.views import AgentState, AgentStep, AgentResult
 from darbot_windows_agent.agent.utils import extract_agent_data, image_message
@@ -37,17 +38,19 @@ class Agent:
         consecutive_failures (int, optional): Maximum number of consecutive failures for the agent. Defaults to 3.
         max_steps (int, optional): Maximum number of steps for the agent. Defaults to 100.
         use_vision (bool, optional): Whether to use vision for the agent. Defaults to False.
+        model_selector (ModelSelector, optional): Model selector for GitHub Copilot integration. Defaults to None.
     
     Returns:
         Agent
     '''
-    def __init__(self,instructions:list[str]=[],additional_tools:list[BaseTool]=[],browser:Literal['edge','chrome','firefox']='edge', llm: BaseChatModel=None,consecutive_failures:int=3,max_steps:int=100,use_vision:bool=False):
+    def __init__(self,instructions:list[str]=[],additional_tools:list[BaseTool]=[],browser:Literal['edge','chrome','firefox']='edge', llm: BaseChatModel=None,consecutive_failures:int=3,max_steps:int=100,use_vision:bool=False, model_selector: ModelSelector=None):
         self.name='Darbot Windows Agent'
         self.description='An agent that can interact with GUI elements on Windows' 
         self.registry = Registry([
             click_tool,type_tool, launch_tool, shell_tool, clipboard_tool,
             done_tool, shortcut_tool, scroll_tool, drag_tool, move_tool,
-            key_tool, wait_tool, scrape_tool, switch_tool, resize_tool
+            key_tool, wait_tool, scrape_tool, switch_tool, resize_tool,
+            github_cli_tool
         ] + additional_tools)
         self.instructions=instructions
         self.browser=browser
@@ -58,6 +61,7 @@ class Agent:
         self.agent_step = AgentStep(max_steps=max_steps)
         self.use_vision=use_vision
         self.llm = llm
+        self.model_selector = model_selector or ModelSelector()
 
     def reason(self):
         message=self.llm.invoke(self.agent_state.messages)
