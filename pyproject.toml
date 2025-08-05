@@ -1,6 +1,6 @@
 [project]
 name = "darbot-windows-agent"
-version = "0.5.0"
+version = "0.6.0"
 description = "A Darbot Computer Use Agent that interacts with Windows OS at GUI level."
 authors = [
     { name = "Darbot Labs", email = "darbot@timelarp.com" }
@@ -10,7 +10,7 @@ license = 'MIT'
 license-files = ["LICENSE"]
 urls = { homepage = "https://github.com/darbtolabs/darbot-windows-agent" }
 keywords = ["windows", "agent", "ai", "desktop","ai agent","automation"]
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -18,6 +18,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
 
@@ -32,7 +33,7 @@ dependencies = [
     "langchain-groq>=0.3.4",
     "langchain-ollama>=0.3.3",
     "langchain-openai>=0.3.27",
-    "live-inspect==0.1.1",
+
     "markdownify>=1.1.0",
     "pillow>=11.2.1",
     "psutil>=7.0.0",
@@ -52,7 +53,16 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=8.4.1",
+    "pytest-cov>=6.2.1", 
     "ruff>=0.12.1",
+    "black>=24.0.0",
+    "mypy>=1.8.0",
+    "pre-commit>=3.5.0",
+]
+test = [
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "pytest-mock>=3.12.0",
 ]
 
 [build-system]
@@ -61,3 +71,28 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build]
 packages = ["darbot_windows_agent"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]  # Line too long (handled by black)
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

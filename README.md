@@ -1,25 +1,58 @@
 <div align="center">
 
-  <h1>� Darbot Windows Agent</h1>
-  <a href="https://github.com/darbtolabs/darbot-windows-agent/blob/main/LICENSE">
+  <h1>🤖 Darbot Windows Agent</h1>
+  <a href="https://github.com/darbotlabs/darbot-windows-agent/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   </a>
   <img src="https://img.shields.io/badge/python-3.12%2B-blue" alt="Python">
-  <img src="https://img.shields.io/badge/platform-Windows%207–11-blue" alt="Platform: Windows 7 to 11">
+  <img src="https://img.shields.io/badge/platform-Windows%2010–11-blue" alt="Platform: Windows 10 to 11">
+  <img src="https://img.shields.io/github/last-commit/darbotlabs/darbot-windows-agent" alt="Last Commit">
 
 </div>
 
 <br>
 
-**Darbot Windows Agent** is a powerful automation agent that interact directly with the Windows at GUI layer. It bridges the gap between AI Agents and the Windows OS to perform tasks such as opening apps, clicking buttons, typing, executing shell commands, and capturing UI state all without relying on traditional computer vision models. Enabling any LLM to perform computer automation instead of relying on specific models for it.
+**Darbot Windows Agent** is a powerful automation agent that interacts directly with Windows at the GUI layer. It bridges the gap between AI Agents and the Windows OS to perform tasks such as opening apps, clicking buttons, typing, executing shell commands, and capturing UI state—all without relying on traditional computer vision models. This enables any LLM to perform computer automation instead of relying on specific models for it.
+
+## 📋 Table of Contents
+
+- [✨ Key Features](#-key-features)
+- [🖥️ Supported Platforms](#️-supported-platforms)
+- [🛠️ Installation Guide](#️-installation-guide)
+- [⚙️ Basic Usage](#️-basic-usage)
+- [🤖 Run Agent](#-run-agent)
+- [🎥 Demos](#-demos)
+- [📈 Grounding](#-grounding)
+- [💡 Vision](#-vision)
+- [⚠️ Caution](#️-caution) 
+- [🚧 Troubleshooting](#-troubleshooting)
+- [🤝 Contributing](#-contributing)
+- [🪪 License](#-license)
+- [📚 Citation](#-citation)
+
+## ✨ Key Features
+
+• **Native Windows Integration** – Uses UI Automation, Win32 APIs, and PyAutoGUI for reliable control  
+• **Zero CV / Vision Optional** – Works with *any* LLM; screenshot attachment is optional  
+• **Fast** – Typical end-to-end latency 1.5 – 2.3 seconds per action  
+• **Extensible** – Add your own Python tools and automation workflows  
+• **LangChain Compatible** – Integrates seamlessly with LangChain agents and workflows  
+• **MIT Licensed** – Fork, embed, or commercialize freely
+
+## 🖥️ Supported Platforms
+
+• **Windows 10** (tested)  
+• **Windows 11** (recommended)  
+• **English Windows locale** (for consistent UI Automation tree)
 
 ## 🛠️Installation Guide
 
 ### **Prerequisites**
 
-- Python 3.12 or higher
-- [UV](https://github.com/astral-sh/uv) (or `pip`)
-- Windows 7 or 8 or 10 or 11
+- **Python 3.12 or higher**
+- **[UV](https://github.com/astral-sh/uv)** (recommended) or `pip`
+- **Windows 10 or 11**
+- **English Windows locale** for optimal UI Automation compatibility
 
 ### **Installation Steps**
 
@@ -81,13 +114,99 @@ Enter your query: <YOUR TASK>
 ![Image](https://github.com/user-attachments/assets/b5ef5bcf-0e15-4c87-93fe-0f9a983536e5)
 ![Image](https://github.com/user-attachments/assets/2b5cada6-4ca1-4e0c-8a10-2df29911b1cb)
 
+## 🚧 Troubleshooting
+
+### Common Installation Issues
+
+**Dependency Resolution Error:**
+If you encounter dependency conflicts during installation:
+
+```bash
+# Try with upgraded pip
+python -m pip install --upgrade pip
+pip install darbot-windows-agent
+
+# Or use UV for faster dependency resolution
+pip install uv
+uv pip install darbot-windows-agent
+```
+
+**Python Version Issues:**
+Ensure you have Python 3.12+ installed:
+
+```bash
+python --version
+# Should show Python 3.12.x or higher
+```
+
+**Import Errors:**
+If you encounter import errors, ensure all dependencies are installed:
+
+```bash
+pip install langchain langchain-google-genai pyautogui uiautomation
+```
+
+### Runtime Issues
+
+**UI Automation Failures:**
+- Ensure Windows is set to **English locale**
+- Run the agent with **administrator privileges** if needed
+- Some applications may require specific timing adjustments
+
+**Agent Not Responding:**
+- Check that the LLM API key is properly set in your `.env` file
+- Verify network connectivity to the LLM service
+- Monitor system resources (CPU/Memory)
+
+For more detailed troubleshooting, please check the [Issues page](https://github.com/darbotlabs/darbot-windows-agent/issues).
+
+## 📚 Additional Documentation
+
+For more detailed information, see our comprehensive documentation:
+
+- **[📃 Installation Guide](INSTALLATION.md)** - Complete setup instructions for all installation methods
+- **[👥 Development Guide](DEVELOPMENT.md)** - Contributing, development setup, and project architecture
+- **[🚨 Troubleshooting Guide](TROUBLESHOOTING.md)** - Comprehensive troubleshooting for common issues
+- **[🤝 Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to the project
+
+## ❓ Frequently Asked Questions
+
+### Q: What LLM providers are supported?
+A: The agent supports multiple LLM providers through LangChain:
+- **Google Gemini** (recommended)
+- **OpenAI GPT** models
+- **Groq** models  
+- **Ollama** (local models)
+- **Anthropic Claude** (via LangChain)
+
+### Q: Does this work on older Windows versions?
+A: The agent is optimized for Windows 10 and 11. Windows 7-8 may have limited compatibility due to UI Automation API differences.
+
+### Q: Can I use this for commercial purposes?
+A: Yes! The project is MIT licensed, allowing commercial use, modification, and distribution.
+
+### Q: How secure is the agent?
+A: The agent runs locally on your machine and only communicates with the LLM API you configure. No data is sent to third parties without your explicit configuration.
+
+### Q: Can I add custom automation tools?
+A: Absolutely! The agent is designed to be extensible. See the [Development Guide](DEVELOPMENT.md) for instructions on adding custom tools.
+
 ## Vision
 
 Talk to your computer. Watch it get things done.
 
 ## ⚠️ Caution
 
-Agent interacts directly with your Windows OS at GUI layer to perform actions. While the agent is designed to act intelligently and safely, it can make mistakes that might bring undesired system behaviour or cause unintended changes. Try to run the agent in a sandbox envirnoment.
+**This software enables automated control of your Windows desktop.** By using this software, you accept full responsibility for any actions performed by AI agents or automated systems built with this tool.
+
+• Agent interacts directly with your Windows OS at GUI layer to perform actions  
+• While the agent is designed to act intelligently and safely, it can make mistakes  
+• Mistakes might cause undesired system behavior or unintended changes  
+• **Recommendation**: Try to run the agent in a sandbox environment first  
+• **Administrator privileges** may be required for some automation tasks  
+• **English Windows locale** is recommended for optimal compatibility
+
+Use at your own risk and ensure you understand the implications of automated desktop control.
 
 ## 🪪 License
 
