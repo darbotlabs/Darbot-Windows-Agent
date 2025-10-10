@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Darbot Windows Agent - AI-powered Windows automation with native GUI control">
+    <meta name="keywords" content="Windows automation, AI agent, desktop automation, LangChain, LLM, AutoGen, ag2ai">
+    <meta name="author" content="Darbot Labs">
+    <meta property="og:title" content="Darbot Windows Agent - AI-Powered Windows Automation">
+    <meta property="og:description" content="Next-generation AI-powered Windows automation with native GUI control">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://darbotlabs.github.io/Darbot-Windows-Agent/">
+    <title>Darbot Windows Agent - AI-Powered Windows Automation</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="cyber-particles"></div>
+    
+    <nav class="nav-bar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🤖</span>
+                <span class="brand-text">DARBOT</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#demo" class="nav-link">Demos</a></li>
+                <li><a href="#docs" class="nav-link">Documentation</a></li>
+                <li><a href="#api" class="nav-link">API</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent" class="nav-link github-link" target="_blank">
+                    <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    GitHub
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge"><span class="pulse-dot"></span><span>v0.6.0 - Latest Release</span></div>
+                <h1 class="hero-title"><span class="gradient-text">DARBOT</span><span class="hero-subtitle">Windows Agent</span></h1>
+                <p class="hero-description">Next-generation AI-powered Windows automation. Bridge the gap between Large Language Models and Windows OS with native GUI control—no computer vision required.</p>
+                <div class="hero-stats">
+                    <div class="stat-item"><div class="stat-value">1.5-2.3s</div><div class="stat-label">Response Time</div></div>
+                    <div class="stat-item"><div class="stat-value">Zero CV</div><div class="stat-label">Vision Optional</div></div>
+                    <div class="stat-item"><div class="stat-value">Any LLM</div><div class="stat-label">Model Agnostic</div></div>
+                </div>
+                <div class="hero-cta">
+                    <a href="#docs" class="btn btn-primary"><span>Get Started</span></a>
+                    <a href="https://github.com/darbotlabs/Darbot-Windows-Agent" class="btn btn-secondary" target="_blank">
+                        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        <span>View on GitHub</span>
+                    </a>
+                </div>
+                <div class="hero-badges">
+                    <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="MIT License">
+                    <img src="https://img.shields.io/badge/python-3.12%2B-blue?style=for-the-badge" alt="Python 3.12+">
+                    <img src="https://img.shields.io/badge/platform-Windows%2010–11-blue?style=for-the-badge" alt="Windows 10-11">
+                    <img src="https://img.shields.io/github/stars/darbotlabs/Darbot-Windows-Agent?style=for-the-badge" alt="Stars">
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <span class="terminal-btn terminal-close"></span>
+                        <span class="terminal-btn terminal-minimize"></span>
+                        <span class="terminal-btn terminal-maximize"></span>
+                        <span class="terminal-title">darbot-agent.exe</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line"><span class="terminal-prompt">$</span><span class="terminal-command">python main_enhanced.py</span></div>
+                        <div class="terminal-line"><span class="terminal-output">🤖 Darbot Windows Agent v0.6.0</span></div>
+                        <div class="terminal-line"><span class="terminal-output">✓ GitHub Copilot detected</span></div>
+                        <div class="terminal-line"><span class="terminal-output">✓ Models initialized: GPT-4, Gemini 2.0</span></div>
+                        <div class="terminal-line"><span class="terminal-prompt">></span><span class="terminal-input typing-animation">Open PowerPoint and create a presentation about AI agents...</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">✨</span>Key Features</h2>
+                <p class="section-subtitle">Powerful capabilities for seamless Windows automation</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🖥️</div>
+                    <h3 class="feature-title">Native Windows Integration</h3>
+                    <p class="feature-description">Direct GUI control using UI Automation, Win32 APIs, and PyAutoGUI for reliable desktop interaction</p>
+                    <ul class="feature-list"><li>UI Automation API access</li><li>Win32 API integration</li><li>PyAutoGUI support</li></ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-description">Typical end-to-end latency of 1.5-2.3 seconds per action with optimized execution paths</p>
+                    <ul class="feature-list"><li>Sub-2 second response time</li><li>Optimized UI tree parsing</li><li>Efficient LLM integration</li></ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Zero Computer Vision</h3>
+                    <p class="feature-description">Works with any LLM - screenshot attachment is optional. No specialized vision models required</p>
+                    <ul class="feature-list"><li>Model agnostic design</li><li>Text-based UI understanding</li><li>Optional vision support</li></ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title">Highly Extensible</h3>
+                    <p class="feature-description">Add custom Python tools and automation workflows. Fully compatible with LangChain and AutoGen ecosystems</p>
+                    <ul class="feature-list"><li>Custom tool integration</li><li>LangChain compatible</li><li>AutoGen 2.0 (ag2ai) patterns</li></ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">Multi-Provider Support</h3>
+                    <p class="feature-description">GitHub Copilot, OpenAI, Google Gemini, Groq, Ollama, and Anthropic Claude integration</p>
+                    <ul class="feature-list"><li>GitHub Copilot (GPT-4)</li><li>Google Gemini 2.0 Flash</li><li>OpenAI, Groq & Ollama</li></ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3 class="feature-title">MIT Licensed</h3>
+                    <p class="feature-description">Fork, embed, or commercialize freely with full MIT license permissions</p>
+                    <ul class="feature-list"><li>Commercial use allowed</li><li>Modification permitted</li><li>No restrictions</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="architecture" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🏗️</span>Architecture & Framework</h2>
+                <p class="section-subtitle">Built on solid foundations with modular design and AutoGen 2.0 principles</p>
+            </div>
+            <div class="architecture-content">
+                <div class="architecture-diagram">
+                    <div class="arch-layer">
+                        <div class="arch-box primary">
+                            <h4>LLM Layer</h4>
+                            <p>GitHub Copilot • OpenAI • Gemini • Groq • Ollama • Claude</p>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-layer">
+                        <div class="arch-box secondary">
+                            <h4>Agent Core (LangChain)</h4>
+                            <p>Tool Registry • Prompt Engineering • State Management</p>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-layer">
+                        <div class="arch-box tertiary">
+                            <h4>Automation Layer</h4>
+                            <p>UI Automation • Win32 API • PyAutoGUI • GitHub CLI</p>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-layer">
+                        <div class="arch-box quaternary">
+                            <h4>Windows OS</h4>
+                            <p>Windows 10/11 • Native GUI • Desktop Applications</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="architecture-details">
+                    <div class="arch-detail-card">
+                        <h4>🔄 Agent Workflow</h4>
+                        <ol class="workflow-steps">
+                            <li><strong>Query Input:</strong> User provides natural language task description</li>
+                            <li><strong>UI State Capture:</strong> Desktop state serialized to structured XML format</li>
+                            <li><strong>LLM Processing:</strong> Model generates action plan based on current UI state</li>
+                            <li><strong>Tool Execution:</strong> Python tools interact with Windows via native APIs</li>
+                            <li><strong>Feedback Loop:</strong> Results returned to LLM for iterative refinement</li>
+                        </ol>
+                    </div>
+                    <div class="arch-detail-card">
+                        <h4>🛠️ Core Components</h4>
+                        <ul class="component-list">
+                            <li><code>Agent Service</code> - Main orchestration and LLM integration layer</li>
+                            <li><code>Desktop Module</code> - Windows automation interface with UI Automation</li>
+                            <li><code>Tool Registry</code> - Dynamic tool registration and discovery system</li>
+                            <li><code>GitHub Integration</code> - CLI commands and authentication support</li>
+                            <li><code>Model Selector</code> - Multi-provider LLM management interface</li>
+                            <li><code>Prompt System</code> - Context-aware prompt engineering templates</li>
+                        </ul>
+                    </div>
+                    <div class="arch-detail-card">
+                        <h4>🧩 AutoGen 2.0 (ag2ai) Principles</h4>
+                        <ul class="component-list">
+                            <li><strong>Multi-Agent Coordination:</strong> Support for coordinated agent workflows</li>
+                            <li><strong>Tool Composition:</strong> Composable tools following ag2ai patterns</li>
+                            <li><strong>Semantic Understanding:</strong> Context-aware action planning and execution</li>
+                            <li><strong>Extensible Framework:</strong> Plugin architecture for custom capabilities</li>
+                            <li><strong>State Management:</strong> Persistent state tracking across agent invocations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo" id="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">🎥</span>Live Demonstrations</h2>
+                <p class="section-subtitle">See Darbot in action with real-world automation tasks</p>
+            </div>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-video">
+                        <video controls>
+                            <source src="https://github.com/user-attachments/assets/0faa5179-73c1-4547-b9e6-2875496b12a0" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="demo-info">
+                        <h3 class="demo-title">📝 File Creation & Text Editing</h3>
+                        <p class="demo-description">
+                            <strong>Prompt:</strong> "Write a short note about LLMs and save to the desktop"
+                        </p>
+                        <p class="demo-details">The agent opens a text editor, composes content about Large Language Models, and saves the file to the desktop—all from a single natural language instruction.</p>
+                        <div class="demo-tags">
+                            <span class="tag">File I/O</span>
+                            <span class="tag">Text Editor</span>
+                            <span class="tag">Desktop</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-video">
+                        <video controls>
+                            <source src="https://github.com/user-attachments/assets/47bdd166-1261-4155-8890-1b2189c0a3fd" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="demo-info">
+                        <h3 class="demo-title">⚙️ System Settings Control</h3>
+                        <p class="demo-description">
+                            <strong>Prompt:</strong> "Change from Dark mode to Light mode"
+                        </p>
+                        <p class="demo-details">Demonstrates navigation through Windows Settings, locating personalization options, and modifying system appearance preferences.</p>
+                        <div class="demo-tags">
+                            <span class="tag">Settings</span>
+                            <span class="tag">UI Navigation</span>
+                            <span class="tag">Theme</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grounding-section">
+                <h3 class="grounding-title">🎯 UI Grounding Examples</h3>
+                <p class="grounding-description">Visual representation of how Darbot understands and interacts with Windows UI elements through structured UI Automation data</p>
+                <div class="grounding-gallery">
+                    <div class="grounding-item">
+                        <img src="https://github.com/user-attachments/assets/e1d32725-e28a-4821-9c89-24b5ba2e583f" alt="Microsoft Store UI Grounding">
+                        <p>Microsoft Store Navigation</p>
+                    </div>
+                    <div class="grounding-item">
+                        <img src="https://github.com/user-attachments/assets/be72ad43-c320-4831-95cf-6f1f30df18de" alt="PowerPoint UI Grounding">
+                        <p>PowerPoint Automation</p>
+                    </div>
+                    <div class="grounding-item">
+                        <img src="https://github.com/user-attachments/assets/d91b513e-13a0-4451-a6e9-f1e16def36e3" alt="File Explorer UI Grounding">
+                        <p>File Explorer Control</p>
+                    </div>
+                    <div class="grounding-item">
+                        <img src="https://github.com/user-attachments/assets/b5ef5bcf-0e15-4c87-93fe-0f9a983536e5" alt="Browser UI Grounding">
+                        <p>Web Browser Interaction</p>
+                    </div>
+                    <div class="grounding-item">
+                        <img src="https://github.com/user-attachments/assets/2b5cada6-4ca1-4e0c-8a10-2df29911b1cb" alt="Social Media UI Grounding">
+                        <p>Application Control</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="docs" id="docs">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">📚</span>Complete Documentation</h2>
+                <p class="section-subtitle">Everything you need to get started and master Darbot Windows Agent</p>
+            </div>
+            
+            <div class="docs-grid">
+                <a href="#installation" class="doc-card">
+                    <div class="doc-icon">📦</div>
+                    <h3 class="doc-title">Installation</h3>
+                    <p class="doc-description">Quick setup guide using pip or uv package manager</p>
+                    <span class="doc-arrow">→</span>
+                </a>
+                <a href="#quick-start" class="doc-card">
+                    <div class="doc-icon">🚀</div>
+                    <h3 class="doc-title">Quick Start</h3>
+                    <p class="doc-description">Run your first automation in under 5 minutes</p>
+                    <span class="doc-arrow">→</span>
+                </a>
+                <a href="#api" class="doc-card">
+                    <div class="doc-icon">⚙️</div>
+                    <h3 class="doc-title">API Reference</h3>
+                    <p class="doc-description">Complete API documentation and method reference</p>
+                    <span class="doc-arrow">→</span>
+                </a>
+                <a href="#tools" class="doc-card">
+                    <div class="doc-icon">🔧</div>
+                    <h3 class="doc-title">Tool Reference</h3>
+                    <p class="doc-description">Available automation tools and their usage</p>
+                    <span class="doc-arrow">→</span>
+                </a>
+                <a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/CONTRIBUTING.md" class="doc-card" target="_blank">
+                    <div class="doc-icon">👥</div>
+                    <h3 class="doc-title">Contributing</h3>
+                    <p class="doc-description">Join the community and contribute to Darbot</p>
+                    <span class="doc-arrow">→</span>
+                </a>
+                <a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/TROUBLESHOOTING.md" class="doc-card" target="_blank">
+                    <div class="doc-icon">🔍</div>
+                    <h3 class="doc-title">Troubleshooting</h3>
+                    <p class="doc-description">Solutions to common issues and problems</p>
+                    <span class="doc-arrow">→</span>
+                </a>
+            </div>
+
+            <div class="doc-section" id="installation">
+                <h3 class="doc-section-title">📦 Installation</h3>
+                <pre class="code-block"><code># Using UV (recommended for faster dependency resolution)
+uv pip install darbot-windows-agent
+
+# Or using pip
+pip install darbot-windows-agent
+
+# Development installation
+git clone https://github.com/darbotlabs/darbot-windows-agent.git
+cd darbot-windows-agent
+pip install -e .</code></pre>
+                <p class="doc-note">
+                    <strong>Prerequisites:</strong> Python 3.12+, Windows 10/11, English locale for optimal UI Automation compatibility
+                </p>
+            </div>
+
+            <div class="doc-section" id="quick-start">
+                <h3 class="doc-section-title">�� Quick Start Guide</h3>
+                
+                <h4 class="doc-subsection-title">Classic Mode</h4>
+                <pre class="code-block"><code>from langchain_google_genai import ChatGoogleGenerativeAI
+from darbot_windows_agent.agent import Agent
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Initialize LLM
+llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash')
+
+# Create agent with optional vision support
+agent = Agent(llm=llm, browser='chrome', use_vision=True)
+
+# Execute automation task
+query = input('Enter your query: ')
+result = agent.invoke(query=query)
+print(result.content)</code></pre>
+
+                <h4 class="doc-subsection-title">Enhanced Mode with GitHub Copilot</h4>
+                <pre class="code-block"><code># Interactive model selection with GitHub Copilot support
+python main_enhanced.py
+
+# Features:
+# - Interactive model selection menu
+# - GitHub Copilot (GPT-4, GPT-4 Turbo, GPT-3.5 Turbo)
+# - GitHub CLI commands integration
+# - Multi-provider support (OpenAI, Google, Groq, Ollama)</code></pre>
+                
+                <h4 class="doc-subsection-title">Environment Setup</h4>
+                <pre class="code-block"><code># Create .env file
+GOOGLE_API_KEY=your_google_api_key
+OPENAI_API_KEY=your_openai_api_key  # optional
+GROQ_API_KEY=your_groq_api_key      # optional
+
+# For GitHub Copilot (no API key needed)
+# Install GitHub CLI: winget install GitHub.cli
+# Authenticate: gh auth login</code></pre>
+            </div>
+
+            <div class="doc-section" id="examples">
+                <h3 class="doc-section-title">💡 Usage Examples</h3>
+                
+                <h4 class="doc-subsection-title">Example 1: File Management</h4>
+                <pre class="code-block"><code># Create a new document and save it
+agent.invoke("Create a new text file on the desktop about Python programming tips")</code></pre>
+                
+                <h4 class="doc-subsection-title">Example 2: System Configuration</h4>
+                <pre class="code-block"><code># Change system settings
+agent.invoke("Enable dark mode in Windows settings")</code></pre>
+                
+                <h4 class="doc-subsection-title">Example 3: Application Control</h4>
+                <pre class="code-block"><code># Launch and interact with applications
+agent.invoke("Open PowerPoint and create a presentation with 3 slides about AI")</code></pre>
+                
+                <h4 class="doc-subsection-title">Example 4: Web Automation</h4>
+                <pre class="code-block"><code># Browser automation
+agent.invoke("Search for recent AI news on Google and summarize the top 3 articles")</code></pre>
+                
+                <h4 class="doc-subsection-title">Example 5: GitHub Operations</h4>
+                <pre class="code-block"><code># GitHub CLI integration
+agent.invoke("Show my GitHub repositories using gh CLI")</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="api" id="api">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">⚙️</span>API Reference</h2>
+                <p class="section-subtitle">Complete API documentation for developers</p>
+            </div>
+            
+            <div class="api-content">
+                <div class="api-section">
+                    <h3 class="api-section-title">Agent Class</h3>
+                    <div class="api-method">
+                        <div class="method-signature">
+                            <code>Agent(llm, browser='chrome', use_vision=False, model_selector=None, max_steps=20)</code>
+                        </div>
+                        <p class="method-description">Main agent class for Windows automation with LLM integration</p>
+                        <div class="method-params">
+                            <h4>Parameters:</h4>
+                            <ul>
+                                <li><code>llm</code> (BaseChatModel) - LangChain compatible language model instance</li>
+                                <li><code>browser</code> (str) - Default browser for web automation ('chrome', 'edge', 'firefox')</li>
+                                <li><code>use_vision</code> (bool) - Enable vision capabilities with screenshot analysis</li>
+                                <li><code>model_selector</code> (ModelSelector) - Optional model selector instance for multi-provider support</li>
+                                <li><code>max_steps</code> (int) - Maximum number of steps for task completion (default: 20)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="api-method">
+                        <div class="method-signature">
+                            <code>agent.invoke(query: str) → AgentResult</code>
+                        </div>
+                        <p class="method-description">Execute a natural language automation query</p>
+                        <div class="method-params">
+                            <h4>Parameters:</h4>
+                            <ul>
+                                <li><code>query</code> (str) - Natural language task description</li>
+                            </ul>
+                            <h4>Returns:</h4>
+                            <ul>
+                                <li><code>AgentResult</code> - Result object containing execution output and metadata</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="api-section">
+                    <h3 class="api-section-title">Model Selector</h3>
+                    <div class="api-method">
+                        <div class="method-signature">
+                            <code>ModelSelector()</code>
+                        </div>
+                        <p class="method-description">Interactive model selection interface for multi-provider LLM management</p>
+                        <div class="method-example">
+                            <h4>Methods:</h4>
+                            <pre class="code-block"><code>from darbot_windows_agent.github.models import ModelSelector
+
+selector = ModelSelector()
+
+# List available models
+models = selector.list_available_models()
+
+# Select a model
+selector.select_model('gpt-4')  # GitHub Copilot GPT-4
+
+# Create LLM instance
+llm = selector.create_llm()</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="api-section" id="tools">
+                    <h3 class="api-section-title">🔧 Available Tools</h3>
+                    <p class="tools-intro">Comprehensive set of automation tools available to the agent</p>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <h4 class="tool-name">🖱️ Click Tool</h4>
+                            <p class="tool-description">Click on UI elements by coordinates or element name</p>
+                            <code class="tool-usage">click(x, y) or click(element_name)</code>
+                            <p class="tool-details">Supports single click, double click, and right-click operations</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">⌨️ Type Tool</h4>
+                            <p class="tool-description">Type text into focused input fields</p>
+                            <code class="tool-usage">type(text, enter=False)</code>
+                            <p class="tool-details">Simulates keyboard input with optional Enter key press</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">📸 Screenshot Tool</h4>
+                            <p class="tool-description">Capture desktop or window screenshots</p>
+                            <code class="tool-usage">screenshot(window_name=None)</code>
+                            <p class="tool-details">Captures entire desktop or specific window screenshots</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">🪟 Window Tool</h4>
+                            <p class="tool-description">Control window state and focus</p>
+                            <code class="tool-usage">window_action(name, action)</code>
+                            <p class="tool-details">Actions: minimize, maximize, close, restore, activate</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">🔍 Find Element Tool</h4>
+                            <p class="tool-description">Search for UI elements in the current window</p>
+                            <code class="tool-usage">find_element(query)</code>
+                            <p class="tool-details">Fuzzy search through UI Automation tree structure</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">⏱️ Wait Tool</h4>
+                            <p class="tool-description">Wait for specified duration or condition</p>
+                            <code class="tool-usage">wait(seconds or condition)</code>
+                            <p class="tool-details">Supports time-based and condition-based waiting</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">📝 Scroll Tool</h4>
+                            <p class="tool-description">Scroll windows and scrollable elements</p>
+                            <code class="tool-usage">scroll(direction, amount)</code>
+                            <p class="tool-details">Vertical and horizontal scrolling support</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">📋 Clipboard Tool</h4>
+                            <p class="tool-description">Read from and write to system clipboard</p>
+                            <code class="tool-usage">clipboard(action, content)</code>
+                            <p class="tool-details">Copy and paste operations with clipboard access</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">💬 Human Tool</h4>
+                            <p class="tool-description">Request input or clarification from user</p>
+                            <code class="tool-usage">ask_human(question)</code>
+                            <p class="tool-details">Interactive prompts for user feedback</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">✅ Done Tool</h4>
+                            <p class="tool-description">Mark task as completed with summary</p>
+                            <code class="tool-usage">done(summary)</code>
+                            <p class="tool-details">Finalizes task execution and returns results</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">🐙 GitHub CLI Tool</h4>
+                            <p class="tool-description">Execute GitHub CLI commands</p>
+                            <code class="tool-usage">gh(command)</code>
+                            <p class="tool-details">Full GitHub CLI integration (gh auth, repo, pr, issue, etc.)</p>
+                        </div>
+                        <div class="tool-card">
+                            <h4 class="tool-name">🔧 Shell Tool</h4>
+                            <p class="tool-description">Execute PowerShell/CMD commands</p>
+                            <code class="tool-usage">shell(command)</code>
+                            <p class="tool-details">Run system commands with output capture</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-icon">❓</span>Frequently Asked Questions</h2>
+                <p class="section-subtitle">Common questions and answers about Darbot Windows Agent</p>
+            </div>
+            
+            <div class="faq-search">
+                <input type="text" id="faqSearch" class="faq-search-input" placeholder="Search FAQ...">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </div>
+            
+            <div class="faq-list" id="faqList">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What LLM providers are supported?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Darbot supports multiple LLM providers through LangChain integration:</p>
+                        <ul>
+                            <li><strong>GitHub Copilot</strong> - GPT-4, GPT-4 Turbo, GPT-3.5 Turbo (via GitHub authentication)</li>
+                            <li><strong>Google Gemini</strong> - 2.0 Flash, 1.5 Pro (recommended for best performance)</li>
+                            <li><strong>OpenAI GPT</strong> - Direct API access to GPT-4, GPT-3.5 Turbo, and other models</li>
+                            <li><strong>Groq</strong> - Llama 3.1 70B, Mixtral 8x7B for fast inference</li>
+                            <li><strong>Ollama</strong> - Run local models like Llama 2, Mistral, Code Llama</li>
+                            <li><strong>Anthropic Claude</strong> - Claude 3 models via LangChain</li>
+                        </ul>
+                        <p>All providers are interchangeable through the unified Agent interface.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I use GitHub Copilot models?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Using GitHub Copilot models is straightforward:</p>
+                        <ol>
+                            <li><strong>Install GitHub CLI:</strong> <code>winget install GitHub.cli</code> (Windows)</li>
+                            <li><strong>Authenticate:</strong> <code>gh auth login</code> and follow prompts</li>
+                            <li><strong>Run enhanced mode:</strong> <code>python main_enhanced.py</code></li>
+                            <li><strong>Select model:</strong> Choose GitHub Copilot from the interactive menu</li>
+                        </ol>
+                        <p><strong>No additional API keys needed!</strong> Uses your existing GitHub authentication. Requires active GitHub Copilot subscription.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Does this work on older Windows versions?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Darbot is optimized for <strong>Windows 10 and Windows 11</strong>. Windows 7-8 may have limited compatibility due to differences in the UI Automation API.</p>
+                        <p><strong>Recommended Configuration:</strong></p>
+                        <ul>
+                            <li>Windows 10 (build 1903 or later) or Windows 11</li>
+                            <li>English Windows locale for optimal UI element detection</li>
+                            <li>Latest Windows updates installed</li>
+                            <li>Python 3.12 or higher</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I use this for commercial purposes?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Yes!</strong> Darbot is licensed under the MIT License, which allows:</p>
+                        <ul>
+                            <li>✅ <strong>Commercial use</strong> - Use in commercial applications and products</li>
+                            <li>✅ <strong>Modification</strong> - Modify source code as needed</li>
+                            <li>✅ <strong>Distribution</strong> - Redistribute modified or unmodified versions</li>
+                            <li>✅ <strong>Private use</strong> - Use privately without disclosure</li>
+                            <li>✅ <strong>Sublicensing</strong> - Include in proprietary software</li>
+                        </ul>
+                        <p>The only requirement is to include the original MIT license and copyright notice in your distribution.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How secure is the agent?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Security considerations and best practices:</strong></p>
+                        <ul>
+                            <li><strong>Local Execution:</strong> Agent runs entirely on your local machine</li>
+                            <li><strong>API Communication:</strong> Only communicates with your configured LLM provider</li>
+                            <li><strong>No Telemetry:</strong> No data collection or transmission to third parties</li>
+                            <li><strong>Credential Safety:</strong> Store API keys in <code>.env</code> file (never commit to version control)</li>
+                            <li><strong>Sandbox Testing:</strong> Recommended to test in isolated environment first</li>
+                            <li><strong>Administrative Access:</strong> Some operations may require elevated privileges</li>
+                        </ul>
+                        <p><strong>⚠️ Important:</strong> The agent can perform any action you can perform on Windows. Always review automation tasks and use responsibly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I add custom automation tools?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Absolutely!</strong> Darbot is designed with extensibility in mind. Here's how to add custom tools:</p>
+                        <ol>
+                            <li><strong>Create a Tool Class:</strong> Inherit from <code>BaseTool</code> in LangChain</li>
+                            <li><strong>Implement Logic:</strong> Define <code>_run()</code> method with your automation logic</li>
+                            <li><strong>Register Tool:</strong> Add to agent's tool registry</li>
+                            <li><strong>Use Tool:</strong> Agent will automatically discover and use it when appropriate</li>
+                        </ol>
+                        <p>Example custom tool:</p>
+                        <pre class="code-block"><code>from langchain.tools import BaseTool
+
+class MyCustomTool(BaseTool):
+    name = "my_custom_tool"
+    description = "Description for the LLM"
+    
+    def _run(self, query: str) -> str:
+        # Your custom logic here
+        return "Result"</code></pre>
+                        <p>See the <a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/DEVELOPMENT.md">Development Guide</a> for detailed instructions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What's the typical response time?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Performance Metrics:</strong></p>
+                        <ul>
+                            <li><strong>Average Total:</strong> 1.5-2.3 seconds per action</li>
+                            <li><strong>UI State Capture:</strong> ~100-200ms</li>
+                            <li><strong>LLM Processing:</strong> 800-1500ms (model-dependent)</li>
+                            <li><strong>Action Execution:</strong> ~200-500ms</li>
+                        </ul>
+                        <p><strong>Factors Affecting Performance:</strong></p>
+                        <ul>
+                            <li>LLM model choice (GPT-4 vs Gemini 2.0 Flash vs local models)</li>
+                            <li>Network latency to LLM API</li>
+                            <li>UI complexity (number of elements in window)</li>
+                            <li>System resources (CPU, memory availability)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does this relate to AutoGen 2.0 (ag2ai)?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Darbot Windows Agent is built with <strong>AutoGen 2.0 (ag2ai) principles</strong> in mind:</p>
+                        <ul>
+                            <li><strong>Tool Composition:</strong> Composable tools following ag2ai patterns for building complex workflows</li>
+                            <li><strong>Multi-Agent Coordination:</strong> Support for coordinated multi-agent workflows and task delegation</li>
+                            <li><strong>Semantic Understanding:</strong> Context-aware action planning using semantic understanding of UI and tasks</li>
+                            <li><strong>Extensible Framework:</strong> Plugin architecture compatible with ag2ai tool standards</li>
+                            <li><strong>State Management:</strong> Persistent state tracking across agent invocations for complex tasks</li>
+                        </ul>
+                        <p>The agent can be integrated into larger AutoGen-based systems for sophisticated automation pipelines.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I run multiple agents simultaneously?</span>
+                        <svg class="faq-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Multi-Agent Considerations:</strong></p>
+                        <ul>
+                            <li>✅ <strong>Different Machines:</strong> Multiple agents can run on separate machines simultaneously</li>
+                            <li>⚠️ <strong>Same Machine:</strong> Agents may conflict for UI control on a single desktop</li>
+                            <li>💡 <strong>Coordination:</strong> Implement coordination logic using AutoGen 2.0 patterns</li>
+                            <li>💡 <strong>Task Queuing:</strong> Use async/await patterns for sequential task execution</li>
+                            <li>💡 <strong>Virtual Desktops:</strong> Windows 10/11 virtual desktops can help isolate agents</li>
+                        </ul>
+                        <p>For complex multi-agent scenarios, consider using AutoGen 2.0 (ag2ai) coordination patterns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">Darbot Windows Agent</h4>
+                    <p class="footer-description">Open-source AI-powered Windows automation framework built with AutoGen 2.0 principles. Created with ❤️ by Darbot Labs.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/darbotlabs/Darbot-Windows-Agent" class="social-link" target="_blank" title="GitHub">
+                            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-section-title">Documentation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#quick-start">Quick Start</a></li>
+                        <li><a href="#api">API Reference</a></li>
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/GITHUB_INTEGRATION.md">GitHub Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-section-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/DEVELOPMENT.md">Development Guide</a></li>
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/CONTRIBUTING.md">Contributing</a></li>
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/TROUBLESHOOTING.md">Troubleshooting</a></li>
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/CHANGELOG.md">Changelog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-section-title">Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent/issues">Report Issues</a></li>
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent/discussions">Discussions</a></li>
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent/blob/main/LICENSE">License (MIT)</a></li>
+                        <li><a href="https://github.com/darbotlabs/Darbot-Windows-Agent#citation">Citation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 Darbot Labs. Licensed under MIT License.</p>
+                <p class="footer-version">Darbot Windows Agent v0.6.0 | Built with LangChain & AutoGen 2.0 principles</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" style="display: none;">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+        </svg>
+    </button>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
