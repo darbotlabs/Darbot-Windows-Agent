@@ -1,0 +1,49 @@
+title: Darbot Windows Agent
+description: AI-powered Windows automation with native GUI control
+theme: null
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# SEO
+author: Darbot Labs
+url: https://darbotlabs.github.io
+baseurl: /Darbot-Windows-Agent
+repository: darbotlabs/Darbot-Windows-Agent
+
+# Social
+twitter:
+  username: darbotlabs
+  card: summary_large_image
+
+social:
+  name: Darbot Labs
+  links:
+    - https://github.com/darbotlabs/Darbot-Windows-Agent
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      image: /assets/images/og-image.png
+
+# Exclude
+exclude:
+  - .gitignore
+  - README.md
+  - Gemfile
+  - Gemfile.lock
